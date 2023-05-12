@@ -1,0 +1,18 @@
+{
+  "name": "my-first-app",
+  "version": "1.0.0",
+  "description": "My first Electron app",
+  "main": "./app/main.ts",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.16.1",
+    "electron": "^24.3.0",
+    "eslint": "^8.40.0",
+    "ts-node": "^10.9.1"
+  }
+}
