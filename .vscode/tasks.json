@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "tsc: build - tsconfig.json",
+            "command": "tsc",
+            "type": "shell",
+            "args": [
+                "-p",
+                "."
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "tsc: watch - tsconfig.json",
+            "command": "tsc",
+            "type": "shell",
+            "args": [
+                "-w",
+                "-p",
+                "."
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$tsc-watch",
+            "isBackground": true
+        }
+    ]
+}
