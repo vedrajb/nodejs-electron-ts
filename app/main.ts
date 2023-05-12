@@ -1,7 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 console.log(__dirname);
-const { prototest, vedraj } = require(path.join(__dirname, '../out/modules/ts/proto-test'));
+const { prototest, vedraj } = require(path.join(__dirname, '../modules/ts/proto-test'));
 
 
 const createWindow = () => {
@@ -9,13 +9,13 @@ const createWindow = () => {
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.ts'),
+            preload: path.join(__dirname, 'preload'),
             nodeIntegration: true,
             contextIsolation: false
         }
     });
     
-    win.loadFile('index.html');
+    win.loadFile('../../index.html');
 };
 
 app.on('window-all-closed', () => {
