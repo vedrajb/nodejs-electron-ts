@@ -16,3 +16,4 @@ console.log(a = 11); //11
 console.log('trying something here');
 
 Vedraj = new Human("Vedraj");
+console.log(Vedraj.name);

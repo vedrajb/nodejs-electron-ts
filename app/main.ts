@@ -1,15 +1,11 @@
 const { app, BrowserWindow } = require('electron');
-const path = require('path');
-console.log(__dirname);
-const { prototest, vedraj } = require(path.join(__dirname, '../modules/ts/proto-test'));
-
 
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload'),
+            preload: `${__dirname}/preload`,
             nodeIntegration: true,
             contextIsolation: false
         }
@@ -34,4 +30,6 @@ app.whenReady().then(() => {
 });
 
 console.log(`Hello from Electron 👋`)
-console.log(`Vedraj has ${vedraj._legs} legs`)
+
+// main app code
+const {temp} = require (`${__dirname}/../modules/ts/my-app`);
