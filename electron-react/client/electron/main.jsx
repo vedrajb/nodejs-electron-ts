@@ -2,39 +2,37 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
 
+const isDev = true;//process.env.NODE_ENV === 'development';
+
 let mainWindow;
 
 const createWindow = () => {
-    mainWindow = new BrowserWindow({ width: 600, height: 600, show: false });
-    mainWindow.loadURL(
-        !app.isPackaged
-        ? process.env.ELECTRON_START_URL
-        : url.format({
-            pathname: path.join(__dirname, '../index.html'),
-            protocol: 'file:',
-            slashes: true,
-        })
-        );
-        
-        mainWindow.once('ready-to-show', () => {
-            mainWindow.show();
-        });
-        
-        mainWindow.on('closed', () => {
-            mainWindow = null;
-        });
-    };
-    
-    app.on('ready', createWindow);
-    
-    app.on('window-all-closed', () => {
-        if (process.platform !== 'darwin') {
-            app.quit();
+    mainWindow = new BrowserWindow({
+        height: 700,
+        width: 1000,
+        webPreferences: {
+            nodeIntegration: true,
+            nodeIntegrationInWorker: true,
+            nodeIntegrationInSubFrames: true,
+            enableRemoteModule: true,
+            // preload: path.join(__dirname, 'preload.js'),
+			worldSafeExecuteJavaScript: true,
+			contextIsolation: true,
+            allowRunningInsecureContent: isDev,
         }
     });
-    
-    app.on('activate', () => {
-        if (mainWindow === null) {
-            createWindow();
-        }
-    });
+
+    mainWindow.loadURL("http://localhost:3000");
+
+    if (isDev) {
+        mainWindow.webContents.openDevTools();
+    }
+};
+
+app.whenReady().then(createWindow);
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
