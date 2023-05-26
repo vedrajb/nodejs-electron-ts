@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { } from "../data/DnDGame.js";
-// import { ActionButton } from "./ActionButton.jsx";
 
 export default function PlayerComponent(props) {
     const [_player, setPlayer] = useState({});
     const [_rolls, setRolls] = useState([]);
     const [_isCrit, setIsCrit] = useState(false);
-    const [_numDice, setNumDice] = useState(0);
 
     useEffect(() => {
         async function initPlayer() {
@@ -23,8 +21,6 @@ export default function PlayerComponent(props) {
     }, [props.Name]);
 
     const updateData = (data) => {
-        // console.log(JSON.stringify(data))
-        // let temp = JSON.parse(_data);
         setPlayer(data.player);
     }
 

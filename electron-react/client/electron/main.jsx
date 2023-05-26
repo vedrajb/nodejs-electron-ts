@@ -1,6 +1,4 @@
 const { app, BrowserWindow } = require('electron');
-const path = require('path');
-const url = require('url');
 
 const isDev = true;//process.env.NODE_ENV === 'development';
 
@@ -15,7 +13,6 @@ const createWindow = () => {
             nodeIntegrationInWorker: true,
             nodeIntegrationInSubFrames: true,
             enableRemoteModule: true,
-            // preload: path.join(__dirname, 'preload.js'),
 			worldSafeExecuteJavaScript: true,
 			contextIsolation: true,
             allowRunningInsecureContent: isDev,
