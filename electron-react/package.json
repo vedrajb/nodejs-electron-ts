@@ -23,7 +23,8 @@
   "scripts": {
     "build": "react-scripts --openssl-legacy-provider start",
     "start": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
-    "server": "node server/server.js"
+    "server": "node server/server.js",
+    "server-tsx": "tsx server/server.ts"
   },
   "eslintConfig": {
     "extends": [
