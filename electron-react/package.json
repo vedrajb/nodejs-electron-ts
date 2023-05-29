@@ -39,5 +39,8 @@
       "last 1 safari version"
     ]
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^8.41.0"
+  }
 }

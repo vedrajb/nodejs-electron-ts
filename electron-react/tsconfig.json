@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "NodeNext",
+        "sourceMap": true,
+        // "outDir": "out",
+        "moduleResolution": "nodenext",
+        // "noEmit": true,
+        // "allowImportingTsExtensions": true,
+    },
+    "include": ["src/**/*.ts", "server/**/*.ts"],
+    "exclude": ["node_modules", ".vscode"]
+}
