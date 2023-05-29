@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Electron-React-Typescript starter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A starter project for a simple dice roll game using [Javascript](https://javascript.info/), [Electron](https://www.electronjs.org/docs/latest/), [React](https://react.dev/learn) and [Typescript](https://www.typescriptlang.org/docs/).  
+This project was bootstrapped with [Create React App (CRA)](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Folder structure
 
-In the project directory, you can run:
+``` bash
+├── .vscode
+│   └── ...                     # vscode configuration
+├── server
+│   ├── server.ts               # typescript implementation of server
+│   └── __server.js             # javascript implementation of server.ts
+├── server
+│   └── electron
+│       └── ...                 # electron startup file
+├── public
+│   └── ...                     # public resources created by CRA    
+├── src
+│   ├── components
+│   │   ├── ActionButton.tsx    # button to roll dice
+│   │   └── PlayerComponent.tsx # component to display player information
+│   ├── data
+│   │   ├── DnDGame.ts          # Game data structures in typescript
+│   │   └── __DnDGame.js        # javascript implementation of DnDGame.ts
+│   ├── App.jsx                 # main app component
+│   ├── index.js                # entry point for react
+│   └── ...
+├── .env                        # environment file
+├── package.json                # npm package file
+├── tsconfig.json               # typescript configuration
+└── ...
+```
 
-### `npm start`
+## Setting up the Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Packages required by this project are listed in `package.json`.  
+To download and install them, run `npm install` in the project root directory.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+For more information on how to use npm, see [npm documentation](https://docs.npmjs.com/about-npm).
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+``` bash
+├── .vscode
+│   ├── tasks.json              # build task definition
+│   └── launch.json             # debug configuration
+└── ...
+```
 
-### `npm run build`
+### Build and Start Dev Environment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The `tasks.json` file contains the build task definition for this project.  
+It defines two tasks:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* `tsc: watch - tsconfig.json`: To compile Typescript we run run the command `tsc --build`. This will compile all `.ts` files in the project to `.js` files.
+* `npm: build`: To start the dev environment run `npm build`. This will allow you to run the app in a browser using the URL `http://localhost:3000`.  
+If you set the `BROWSER` environment variable in the _.env_ file to a valid browser name, the browser will be opened automatically after the build step.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The `launch.json` file contains the debug configuration for this project.  
+It defines three debug configurations:
 
-### `npm run eject`
+* `Launch App`: launches the electron app.
+* `Launch Server`: launches the server for debugging.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Launch the Server and Client
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To start the server, run `npm run server` in the project root directory. Alternatively, to debug the server, run the `Launch Server` debug configuration.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To run the client Electron app, you can run the `Launch App` debug configuration. Alternatively, you can run `npm run electron` in the project root directory.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Note: you can run only 1 debug configuration at a time. So, if you want to debug the server you need to run the client using the command line and vice versa.
