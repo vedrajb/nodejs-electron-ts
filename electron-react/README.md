@@ -11,7 +11,7 @@ This project was bootstrapped with [Create React App (CRA)](https://github.com/f
 ├── server
 │   ├── server.ts               # typescript implementation of server
 │   └── __server.js             # javascript implementation of server.ts
-├── server
+├── client
 │   └── electron
 │       └── ...                 # electron startup file
 ├── public
