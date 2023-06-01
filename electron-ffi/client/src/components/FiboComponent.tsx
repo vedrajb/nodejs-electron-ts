@@ -1,14 +1,18 @@
 import { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class FiboComponent extends Component<object, {series: number[]}> {
+    id = uuidv4();
+
     constructor(props: object) {
         super(props);
         this.state = {
             series: []
         };
+        this.initFibo = this.initFibo.bind(this);
     }
     
-    async componentDidMount() {
+    componentDidMount() {
         this.clear();
     }
 
