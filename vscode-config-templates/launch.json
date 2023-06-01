@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
+            /* Launch via executable */
             "name": "Launch App",
             "type": "node",
             "request": "launch",
@@ -23,8 +24,25 @@
             "resolveSourceMapLocations": [
               "${workspaceFolder}/**",        //use source maps for files in workspace folder
               "!**/node_modules/**"           //but ignore everything in the node_modules folder
+            ]
+        },
+        {
+            /* Launch via npm */
+            "name": "Launch App",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "skipFiles": [
+                "<node_internals>/**"
             ],
-            // "preLaunchTask": "tsc: build",
+            "runtimeExecutable": "npm",
+            "args" : ["start"],
+            "outputCapture": "std",
+            "sourceMaps": true,
+            "resolveSourceMapLocations": [
+              "${workspaceFolder}/**",        //use source maps for files in workspace folder
+              "!**/node_modules/**"           //but ignore everything in the node_modules folder
+            ]
         }
     ]
 }
