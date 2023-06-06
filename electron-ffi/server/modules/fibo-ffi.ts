@@ -2,7 +2,7 @@ import ffi from 'ffi-napi';
 import ref from 'ref-napi';
 
 export class fibo_ffi {
-    ffilib = ffi.Library("./bin/binding.dll", {
+    ffilib = ffi.Library("./server/bin/binding.dll", {
         fibonacci_init: [ref.types.void, [ ref.types.int, ref.types.int ]],
         fibonacci_next: [ref.types.bool, []],
         fibonacci_current: [ref.types.int, []],

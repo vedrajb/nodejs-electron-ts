@@ -22,7 +22,7 @@ app.get('/api/pong', (req, res) => {
     res.send("echo: " + req.url);
 });
 
-import { fibo_ffi } from './modules/fibo-ffi';
+import { fibo_ffi } from './modules/fibo-ffi.ts';
 
 const fibo = new fibo_ffi();
 fibo.init();
