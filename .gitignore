@@ -4,7 +4,6 @@
 **/.npmrc
 .tags*
 .vs/
-.vscode/
 *.log
 *.pyc
 *.sln
@@ -57,3 +56,8 @@ spec/fixtures/logo.png
 
 # tsc output folder
 out
+
+# vscode
+!.vscode/launch.json
+!.vscode/tasks.json
+.vscode/*
