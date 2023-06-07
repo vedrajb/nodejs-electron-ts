@@ -20,15 +20,16 @@
 // such that F(0) = a, F(1) = b.
 // This function must be called before any other function.
 extern "C" MATHLIBRARY_API void fibonacci_init(
+    const char* guid,
     const unsigned long long a, const unsigned long long b);
 
 // Produce the next value in the sequence.
 // Returns true on success and updates current value and index;
 // false on overflow, leaves current value and index unchanged.
-extern "C" MATHLIBRARY_API bool fibonacci_next();
+extern "C" MATHLIBRARY_API bool fibonacci_next(const char* guid);
 
 // Get the current value in the sequence.
-extern "C" MATHLIBRARY_API unsigned long long fibonacci_current();
+extern "C" MATHLIBRARY_API unsigned long long fibonacci_current(const char* guid);
 
 // Get the position of the current value in the sequence.
-extern "C" MATHLIBRARY_API unsigned fibonacci_index();
+extern "C" MATHLIBRARY_API unsigned fibonacci_index(const char* guid);
