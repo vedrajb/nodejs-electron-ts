@@ -1,36 +1,34 @@
 # FF starter
 
-This is a simple project to use Node.js Foreign Function Interface module [ffi-napi](https://github.com/node-ffi/node-ffi).  
+This is a simple project to use [Typescript](https://www.typescriptlang.org/docs/), Node.js Foreign Function Interface module [ffi-napi](https://github.com/node-ffi/node-ffi), [Electron](https://www.electronjs.org/docs/latest/), [React](https://react.dev/learn) and [Redux](https://redux.js.org/introduction/getting-started).  
 This project was bootstrapped with [Vite](https://vitejs.dev/guide/). _This is recommended by Aivan, but not used in Anne._
 
 ## Folder structure
 
 ``` bash
-├── server
-│   ├── .vscode
+├── .vscode
+├── server                  # server folder
 |   ├── bin
-|   │   └── binding.dll         # C++ dll for Fibonacci series
+|   │   └── binding.dll     # C++ dll for Fibonacci series
 │   ├── modules
-│   │   └── fibo-ffi.ts         # ffi implementation of binding.dll
-│   ├── server.ts               # typescript implementation of server
-│   ├── package.json            # npm package file
-│   └── tsconfig.json           # typescript configuration
-└── client
-    ├── .vscode
-    ├── public
-    │   └── ...                 # public resources created by Vite
-    ├── src
-    │   ├── components
-    │   │   └── FiboComponent.tsx # component to display fibonacci series
-    │   ├── App.tsx             # main app component
-    │   ├── index.tsx           # entry point for react
-    │   ├── custom.d.ts         # typescript declaration file
-    │   └── ...
-    ├── index.html              # html template
-    ├── main.tsx                # electron startup file
-    ├── package.json            # npm package file
-    ├── tsconfig.json           # typescript configuration
-    └── vite.config.json        # vite configuration
+│   │   └── fibo-ffi.ts     # ffi implementation of binding.dll
+│   ├── server.ts           # typescript implementation of server
+├── public
+│   └── ...                 # public resources created by Vite
+├── src
+│   ├── components
+│   │   └── FiboComponent.tsx       # React component to display fibonacci series
+│   │   └── FiboComponentRedux.tsx  # React-Redux component to display fibonacci series
+│   ├── App.tsx             # main app component
+│   ├── index.tsx           # entry point for react
+│   ├── store.ts            # Redux store
+│   ├── custom.d.ts         # typescript declaration file 
+│   └── ...
+├── index.html              # html template
+├── main.tsx                # electron startup file
+├── package.json            # npm package file
+├── tsconfig.json           # typescript configuration
+└── vite.config.json        # vite configuration
 ```
 
 ## Setting up the Project
@@ -72,4 +70,4 @@ It defines two tasks:
 The `launch.json` file contains the debug configuration for this project.  
 It defines three debug configurations:
 
-* `Launch App`: launches the electron app from vscode. Alternatively, you can run `npm start` in the terminal.
+* `Launch App`: launches the electron app from vscode. Alternatively, you can run `npm run client` in the terminal.
