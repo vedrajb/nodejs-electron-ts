@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 export default class FiboComponent extends Component<object, {series: number[]}> {
-    id = uuidv4();
+    id: string;
 
     constructor(props: object) {
         super(props);
@@ -10,10 +10,12 @@ export default class FiboComponent extends Component<object, {series: number[]}>
             series: []
         };
         this.initFibo = this.initFibo.bind(this);
+        this.id = uuidv4();
     }
     
     componentDidMount() {
         this.clear();
+        console.log("FiboComponent: " + this.id);
     }
 
     clear() {
@@ -23,7 +25,7 @@ export default class FiboComponent extends Component<object, {series: number[]}>
 
     async initFibo() {
         try {
-            const response = await fetch('http://localhost:3001/api/fibo/reset');
+            const response = await fetch('http://localhost:3001/api/fibo/reset?id=' + this.id);
             const data = await response.json();
             this.initialise(data);
         } catch (error) {
@@ -41,7 +43,7 @@ export default class FiboComponent extends Component<object, {series: number[]}>
 
     async nextFibo() {
         try {
-            const response = await fetch('http://localhost:3001/api/fibo/next');
+            const response = await fetch('http://localhost:3001/api/fibo/next?id=' + this.id);
             const data = await response.json();
             this.next(data);
         } catch (error) {

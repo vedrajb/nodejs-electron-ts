@@ -14,15 +14,16 @@ type FiboReduxState = {
 }
 
 class FiboRedux extends Component<FiboReduxProps, FiboReduxState> {
-    static propTypes: object;//{ series: PropTypes.Validator<number[]>; set: PropTypes.Validator<(...args: any[]) => any>; }
+    static propTypes: object;
 
-    id = uuidv4();
-    
+    id: string;
+
     constructor(props: FiboReduxProps) {
         super(props);
         this.state = {
             series: props.series
         };
+        this.id = uuidv4();
         this.clear = this.clear.bind(this);
         this.initFibo = this.initFibo.bind(this);
         this.nextFibo = this.nextFibo.bind(this);
@@ -31,7 +32,9 @@ class FiboRedux extends Component<FiboReduxProps, FiboReduxState> {
 
     componentDidMount() {
         this.clear();
+        console.log("FiboRedux: " + this.id);
     }
+    
 
     clear() {
         this.initFibo();
@@ -39,7 +42,13 @@ class FiboRedux extends Component<FiboReduxProps, FiboReduxState> {
 
     async initFibo() {
         try {
-            const response = await fetch('http://localhost:3001/api/fibo/reset');
+            const response = await fetch('http://localhost:3001/api/fibo/reset', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: this.id })
+            });
             const data = await response.json();
             this.initialise(data);
         } catch (error) {
@@ -57,7 +66,13 @@ class FiboRedux extends Component<FiboReduxProps, FiboReduxState> {
 
     async nextFibo() {
         try {
-            const response = await fetch('http://localhost:3001/api/fibo/next');
+            const response = await fetch('http://localhost:3001/api/fibo/next', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: this.id })
+            });
             const data = await response.json();
             this.next(data);
         } catch (error) {
