@@ -128,6 +128,7 @@ const useImageScript = async (_base64Image): Promise<void> => {
   console.log(`ts :: ${imagePath}: ${binary.length} ${gif.width}x${gif.height}`);
 
   for (let i = 0; i < gif.length; i++) {
+    // extract frame
     const frame = gif[i];
     console.log(`[frame ${i}] size: (${frame.width},${frame.height}), length: ${frame.bitmap.length}`);
     
@@ -151,7 +152,18 @@ const useImageScript = async (_base64Image): Promise<void> => {
     // convert to 4 bit grayscale
     const bitPixels = convert16bitTo4bit(pixels);
     console.log(`[frame ${i}] 4bit pixels: ${bitPixels.length}`);
-    fs.writeFileSync(`./magicktest/4bit_${i}.txt`, "" + bitPixels);
+
+    // create json object
+    const oled = {
+      width: frame.width,
+      height: frame.height,
+      originalPixels: pixels.length,
+      frameCount: gif.length,
+      totalPackets: Math.ceil(bitPixels.length / 59),
+      packedCount: bitPixels.length,
+      packedPixels: [...bitPixels]
+    };
+    fs.writeFileSync(`./magicktest/json_${i}.txt`, "" + JSON.stringify(oled, null, 2));
   }
 };
 
