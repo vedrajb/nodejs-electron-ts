@@ -50,14 +50,14 @@ const useImageScript = async (_base64Image): Promise<void> => {
   console.log("buffer: " + binary.byteLength);
 
   // read binary data from file
-  const imagePath = path.join(__dirname, `../../${FILENAME}`);
+  // const imagePath = path.join(__dirname, `../../${FILENAME}`);
   // let binary = fs.readFileSync(imagePath);
 
   const gif = await GIF.decode(binary);
 
-  console.log(`ts :: ${imagePath}: ${binary.length} ${gif.width}x${gif.height}`);
+  // console.log(`ts :: ${imagePath}: ${binary.length} ${gif.width}x${gif.height}`);
 
-  for (let i = 0; i < gif.length; i++) {
+  for (let i = 0; i < 1/*gif.length*/; i++) {
     // extract frame
     const frame = gif[i];
     // console.log(`[frame ${i}] size: (${frame.width},${frame.height}), length: ${frame.bitmap.length}`);
@@ -67,8 +67,9 @@ const useImageScript = async (_base64Image): Promise<void> => {
 
     const rgbBuffer = new Uint8Array(frame.bitmap);
     // console.log(`[frame ${i}] rgb compare: + ${Buffer.from(frame.bitmap).equals(Buffer.from(rgbBuffer))}`);
+    console.log(`[frame ${i}] pixels: ${frame.bitmap}`);
 
-    frame.saturation(0);
+    // frame.saturation(0);
 
     buff = await frame.encode();
     fs.writeFileSync(`./magicktest/bw_${i}.png`, buff);

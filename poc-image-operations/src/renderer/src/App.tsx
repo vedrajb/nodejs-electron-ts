@@ -1,6 +1,7 @@
 import Versions from "./components/Versions";
-import electronLogo from "./assets/electron.svg";
+// import electronLogo from "./assets/electron.svg";
 import { useState } from "react";
+import { processImage } from "./process-image";
 
 function App(): JSX.Element {
   const ipcHandle = async (): Promise<string> =>
@@ -22,6 +23,9 @@ function App(): JSX.Element {
     const response = await window.anne.resizeImage(imageBase64);
     console.log(response); // log the response from the main process
   };
+  const parseGifUI = async () => {
+    processImage(imageBase64);
+  };
   return (
     <>
       <input type="file" onChange={handleImageChange} />
@@ -34,6 +38,11 @@ function App(): JSX.Element {
         <div className="action">
           <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
             Send IPC
+          </a>
+        </div>
+        <div className="action">
+          <a target="_blank" rel="noreferrer" onClick={parseGifUI}>
+            Parse in UI
           </a>
         </div>
       </div>
